@@ -1,3 +1,13 @@
+"""
+This script is used to address following problem statement:
+
+There are x number of flight and y number of freights in queue for clearance at airport.
+The priority is given to flight clearance.
+Even if a freight is encountered, make sure there is no flight in the queue next, if there is, allo the flight.
+
+IMP: Pick a random element from (x+y), it could be flight or freight.
+"""
+
 import random
 import sys
 
@@ -19,8 +29,6 @@ class Clearance(object):
 		self.flight_ids = map(lambda x: "Flight #" + str(x), xrange(self.total_flights))
 		self.frieght_ids = map(lambda x: "Freight #" + str(x), xrange(self.total_freights))
 		self.merged_ids = self.flight_ids + self.frieght_ids
-		print "Total: ", self.merged_ids
-
 
 	def pending_ids(self, merged_ids):
 		self.toggle_in_queue(self.picked_ele)
@@ -63,11 +71,9 @@ class Clearance(object):
 
 	def get_random(self):
 		'''To pick a random of All ids'''
-		# print "\n In get_random()"
 		if self.merged_ids:
 			self.picked_ele = random.choice(self.merged_ids)
 			print "\nRequest: {0}".format(self.picked_ele)
-			# print "\nself.merged_ids: ", self.merged_ids
 			self.merged_ids.remove(self.picked_ele)
 			self.pending_ids(self.merged_ids)
 
